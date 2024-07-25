@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Contacts.Models.contacts>
+
+@{
+    ViewData["Title"] = "Kişiler";
+}
+
+<div class="container">
+    <a asp-action="Create" class="btn btn-primary">Yeni Kişi Ekle</a><br /><br />
+    <div class="row">
+        @foreach (var person in Model)
+        {
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <img src="~/@person.ImagePath" class="card-img-top rounded-circle" alt="@person.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@person.Name</h5>
+                        <p class="card-text">@person.PhoneNumber</p>
+                        <a asp-action="Edit" asp-route-id="@person.Id" class="btn btn-warning">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@person.Id" class="btn btn-danger">Sil</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .card-img-top {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 15px auto 0;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        .card-text {
+            color: gray;
+            font-size: 1em;
+        }
+    </style>
+
